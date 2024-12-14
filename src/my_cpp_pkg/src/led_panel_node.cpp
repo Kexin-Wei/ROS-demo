@@ -33,13 +33,14 @@ class LedPanelNode : public rclcpp::Node {
         response->message = "Set done";
         RCLCPP_INFO(this->get_logger(), "%ld set to %s", idx,
                     request->set_state ? "true" : "fasle");
+        publishLedStatusCallback();
     }
 
     void publishLedStatusCallback() {
         auto msg = my_robot_interfaces::msg::LedStatus();
-        msg.led1 = ledState_[0];
-        msg.led2 = ledState_[1];
-        msg.led3 = ledState_[2];
+        for (const auto led_state : ledState_) {
+            msg.led_states.push_back(led_state);
+        }
         publisher_->publish(msg);
     }
 

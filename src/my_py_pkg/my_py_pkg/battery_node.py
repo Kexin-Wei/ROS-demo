@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 import rclpy
 import threading
+import numpy as np
 from rclpy.node import Node
 from functools import partial
 from my_robot_interfaces.srv import SetLed
@@ -9,31 +10,51 @@ from my_robot_interfaces.srv import SetLed
 class BatteryNode(Node):
     def __init__(self):
         super().__init__("battery_node")
-        self.battery_capacity = 80
-        self.dbattery_capacity = 10
+        self.battery_capacity = 0
+        self.dbattery_capacity = -10
         self.timer_ = self.create_timer(0.1, self.callbackBatteryChange)
         self.timer2_ = self.create_timer(0.5, self.callbackSetLed)
         self.get_logger().info(f"{self.get_name()} is established")
+
+    def correct_index(self, index):
+        return np.clip(index, 0, 2)
+
+    def calc_current_index(self):
+        current_index = int(self.battery_capacity / 30)
+        return self.correct_index(current_index)
+
+    def correct_index_with_on_or_off(self):
+        control_index = self.calc_current_index()
+        set_state = True
+        if self.dbattery_capacity < 0:
+            control_index = control_index + 1
+            set_state = False
+        return self.correct_index(control_index), set_state
 
     def callbackBatteryChange(self):
         if self.battery_capacity == 80 or self.battery_capacity == 0:
             self.dbattery_capacity = self.dbattery_capacity * (-1)
         self.battery_capacity = self.battery_capacity + self.dbattery_capacity
+        # index, state = self.correct_index_with_on_or_off()
+        # self.get_logger().info(
+        # f"battery : {self.battery_capacity}, index: {index}, set: {state}"
+        # )
 
     def callbackSetLed(self):
         client = self.create_client(SetLed, "set_led")
         while not client.wait_for_service(1):
             self.get_logger().info("Waiting server...")
 
-        change_index = int(self.battery_capacity / 30)
         request = SetLed.Request()
-        request.led_index = change_index
-        request.set_state = True if self.dbattery_capacity > 0 else False
-        future = client.call_async(request=request)
+        index, state = self.correct_index_with_on_or_off()
+        request.led_index = int(index)
+        request.set_state = state
         self.get_logger().info(
             f"battery: {self.battery_capacity}, "
             f"idx: {request.led_index}, set:{request.set_state}"
         )
+        future = client.call_async(request=request)
+        self.get_logger().info("test")
         future.add_done_callback(partial(self.callbackFromServer, request=request))
 
     def callbackFromServer(self, future, request):

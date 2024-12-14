@@ -12,13 +12,14 @@
     "workspaceMount": "source=${localWorkspaceFolder},target=/home/kristin/ros2_ws,type=bind",
     "customizations": {
         "vscode": {
-            "extensions":[
-                "ms-vscode.cpptools",
-                "ms-vscode.cpptools-themes",
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
                 "twxs.cmake",
                 "donjayamanne.python-extension-pack",
                 "eamodio.gitlens",
-                "ms-iot.vscode-ros"
+                "ms-iot.vscode-ros",
+                "ms-azuretools.vscode-docker",
+                "ms-python.black-formatter"
             ]
         }
     },
@@ -31,11 +32,12 @@
         "--net=host",
         "--pid=host",
         "--ipc=host",
-        "-e", "DISPLAY=${env:DISPLAY}"
+        "-e",
+        "DISPLAY=${env:DISPLAY}"
     ],
     "mounts": [
-       "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-       "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
     ],
     "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/kristin/ros2_ws/"
 }
