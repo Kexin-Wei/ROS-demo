@@ -19,6 +19,11 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip
 RUN apt-get install -y neovim
 RUN apt-get install -y openssh-client
+# add ros path to .bashrc
+RUN echo 'source /opt/ros/jazzy/setup.bash' >> /home/kristin/.bashrc \
+    && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> /home/kristin/.bashrc \
+    && echo 'source ~/ros2_ws/install/setup.bash' >> /home/kristin/.bashrc
+
 ENV SHELL /bin/bash
 
 # ********************************************************
