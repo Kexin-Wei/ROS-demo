@@ -1,0 +1,5 @@
+int64 led_index # the index of the led to set
+bool set_state # set to true to turn on, false to turn off
+---
+bool success # indicate the successful run of service
+string message # informational message
