@@ -5,22 +5,39 @@ import numpy as np
 from rclpy.node import Node
 from functools import partial
 from my_robot_interfaces.srv import SetLed
+from my_robot_interfaces.msg import LedStatus
 
 
 class BatteryNode(Node):
     def __init__(self):
         super().__init__("battery_node")
+        self.max_battery_capacity = 100
+        self.min_battery_capacity = 0
         self.battery_capacity = 0
         self.dbattery_capacity = -10
-        self.timer_ = self.create_timer(0.1, self.callbackBatteryChange)
-        self.timer2_ = self.create_timer(0.5, self.callbackSetLed)
+        self.n_len_ = 3
+        self.timer_ = self.create_timer(0.5, self.callbackBatteryChange)
+        self.timer2_ = self.create_timer(2, self.callbackSetLed)
+        self.subscriber_ = self.create_subscription(
+            LedStatus,
+            "led_panel_state",
+            self.callback_update_n_led,
+            10,
+        )
         self.get_logger().info(f"{self.get_name()} is established")
 
+    def callback_update_n_led(self, msg: LedStatus):
+        self.n_len_ = len(msg.led_states)
+
     def correct_index(self, index):
-        return np.clip(index, 0, 2)
+        return np.clip(index, 0, self.n_len_)
 
     def calc_current_index(self):
-        current_index = int(self.battery_capacity / 30)
+        current_index = int(
+            (self.battery_capacity - self.min_battery_capacity)
+            / (self.max_battery_capacity - self.min_battery_capacity)
+            * self.n_len_
+        )
         return self.correct_index(current_index)
 
     def correct_index_with_on_or_off(self):
@@ -32,13 +49,12 @@ class BatteryNode(Node):
         return self.correct_index(control_index), set_state
 
     def callbackBatteryChange(self):
-        if self.battery_capacity == 80 or self.battery_capacity == 0:
+        if (
+            self.battery_capacity == self.max_battery_capacity
+            or self.battery_capacity == self.min_battery_capacity
+        ):
             self.dbattery_capacity = self.dbattery_capacity * (-1)
         self.battery_capacity = self.battery_capacity + self.dbattery_capacity
-        # index, state = self.correct_index_with_on_or_off()
-        # self.get_logger().info(
-        # f"battery : {self.battery_capacity}, index: {index}, set: {state}"
-        # )
 
     def callbackSetLed(self):
         client = self.create_client(SetLed, "set_led")
@@ -54,7 +70,6 @@ class BatteryNode(Node):
             f"idx: {request.led_index}, set:{request.set_state}"
         )
         future = client.call_async(request=request)
-        self.get_logger().info("test")
         future.add_done_callback(partial(self.callbackFromServer, request=request))
 
     def callbackFromServer(self, future, request):
