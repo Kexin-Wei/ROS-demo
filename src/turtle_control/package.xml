@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>my_robot_bringup</name>
+  <name>turtle_control</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="vacationwkx@gmail.com">kristin</maintainer>
@@ -9,9 +9,11 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <exec_depend>my_py_pkg</exec_depend>
-  <exec_depend>my_cpp_pkg</exec_depend>
-  <exec_depend>turtlesim</exec_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <exec_depend>ros2launch</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

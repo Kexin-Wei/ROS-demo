@@ -1,8 +1,9 @@
 #include "rclcpp/rclcpp.hpp"
+#include "turtlesim/srv/teleport_relative.hpp"
 
-class LedPanelNode : public rclcpp::Node {
+class TurtleControllerNode : public rclcpp::Node {
    public:
-    LedPanelNode() : Node("a_new_name") {
+    TurtleControllerNode() : Node("turtle_controller") {
         RCLCPP_INFO(this->get_logger(), "%s is established.", this->get_name());
     }
 };
@@ -10,7 +11,7 @@ class LedPanelNode : public rclcpp::Node {
 int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<LedPanelNode>();
+    auto node = std::make_shared<TurtleControllerNode>();
     rclcpp::spin(node);
     rclcpp::shutdown();
 

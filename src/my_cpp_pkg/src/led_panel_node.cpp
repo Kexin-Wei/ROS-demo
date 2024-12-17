@@ -6,18 +6,18 @@
 #include "rcl_interfaces/msg/set_parameters_result.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-class LedPanelNode : public rclcpp::Node {
+class TurtleSpawnerNode : public rclcpp::Node {
    public:
-    LedPanelNode() : Node("led_panel_node") {
+    TurtleSpawnerNode() : Node("led_panel_node") {
         server_ = this->create_service<my_robot_interfaces::srv::SetLed>(
-            "set_led", std::bind(&LedPanelNode::callbackSetLed, this,
+            "set_led", std::bind(&TurtleSpawnerNode::callbackSetLed, this,
                                  std::placeholders::_1, std::placeholders::_2));
         publisher_ =
             this->create_publisher<my_robot_interfaces::msg::LedStatus>(
                 "led_panel_state", 10);
         timer_ = this->create_wall_timer(
             std::chrono::seconds(1),
-            std::bind(&LedPanelNode::publishLedStatusCallback, this));
+            std::bind(&TurtleSpawnerNode::publishLedStatusCallback, this));
 
         // set parameter
         this->declare_parameter("led_state",
@@ -56,7 +56,7 @@ class LedPanelNode : public rclcpp::Node {
         const my_robot_interfaces::srv::SetLed::Request::SharedPtr request,
         const my_robot_interfaces::srv::SetLed::Response::SharedPtr response) {
         auto idx = request->led_index;
-        if (idx >= ledState_.size() || idx < 0) {
+        if (idx >= int(ledState_.size()) || idx < 0) {
             response->success = false;
             response->message = "No such a led, out of index.";
             return;
@@ -90,7 +90,7 @@ class LedPanelNode : public rclcpp::Node {
 int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<LedPanelNode>();
+    auto node = std::make_shared<TurtleSpawnerNode>();
     rclcpp::spin(node);
     rclcpp::shutdown();
 

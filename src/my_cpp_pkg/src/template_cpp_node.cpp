@@ -1,8 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 
-class LedPanelNode : public rclcpp::Node {
+class NewNode : public rclcpp::Node {
    public:
-    LedPanelNode() : Node("a_new_name") {
+    NewNode() : Node("a_new_name") {
         RCLCPP_INFO(this->get_logger(), "%s is established.", this->get_name());
     }
 };
@@ -10,7 +10,7 @@ class LedPanelNode : public rclcpp::Node {
 int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<LedPanelNode>();
+    auto node = std::make_shared<NewNode>();
     rclcpp::spin(node);
     rclcpp::shutdown();
 

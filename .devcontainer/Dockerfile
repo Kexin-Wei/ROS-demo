@@ -20,7 +20,7 @@ RUN apt-get install -y python3-pip neovim openssh-client terminator ros-jazzy-tu
 # add ros path to .bashrc
 RUN echo 'source /opt/ros/jazzy/setup.bash' >> /home/kristin/.bashrc \
     && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> /home/kristin/.bashrc \
-    && echo 'source /home/kristin/ros2_ws/install/setup.bash' >> /home/kristin/.bashrc
+    && echo 'source /home/kristin/ros2_ws/install/setup.bash' >> /home/kristin/.bashrc 
 
 ENV SHELL /bin/bash
 
