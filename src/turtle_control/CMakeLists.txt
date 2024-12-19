@@ -31,6 +31,8 @@ set(srv_files
 )
 
 set(msg_files
+  "msg/Goal.msg"
+  "msg/CaughtIt.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
