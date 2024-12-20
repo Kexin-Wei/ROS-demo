@@ -32,7 +32,7 @@ class TurtleControllerNode : public rclcpp::Node {
 
         // move turtle
         timerMoveTurtle_ = this->create_wall_timer(
-            std::chrono::milliseconds(100),
+            std::chrono::milliseconds(50),
             std::bind(&TurtleControllerNode::closedLoopControl, this));
         timerMoveTurtle_->cancel();
 
@@ -171,7 +171,7 @@ class TurtleControllerNode : public rclcpp::Node {
 
     std::string turtleName_{"turtle1"};
     float angleStep_{0.2};
-    float distStep_{0.2};
+    float distStep_{0.1};
     bool caughtIt_{false};
 };
 

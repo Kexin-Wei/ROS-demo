@@ -30,9 +30,9 @@ class TurtleSpawnerNode : public rclcpp::Node {
             std::chrono::milliseconds(500),
             std::bind(&TurtleSpawnerNode::callbackSendGoal, this));
 
-        // add turtle every 3 second
+        // add turtle every 2 second
         timerAddTurtle_ = this->create_wall_timer(
-            std::chrono::seconds(2),
+            std::chrono::milliseconds(1500),
             std::bind(&TurtleSpawnerNode::callbackAddTurtle, this));
         callbackAddTurtle();
 
