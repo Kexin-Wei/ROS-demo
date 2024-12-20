@@ -16,7 +16,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y python3-pip neovim openssh-client terminator ros-jazzy-turtlesim '~nros-jazzy-rqt*'
+RUN apt-get install -y python3-pip neovim openssh-client terminator 
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y ros-jazzy-turtlesim ros-jazzy-urdf-tutorial '~nros-jazzy-rqt*'
 # add ros path to .bashrc
 RUN echo 'source /opt/ros/jazzy/setup.bash' >> /home/kristin/.bashrc \
     && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> /home/kristin/.bashrc \
