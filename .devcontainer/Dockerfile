@@ -33,9 +33,10 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y ros-jazzy-turtlesim ros-jazzy-urdf-tutorial ros-jazzy-ros-gz '~nros-jazzy-rqt*'
 
 # add ros path to .bashrc
-RUN echo 'source /opt/ros/jazzy/setup.bash' >> /home/kristin/.bashrc \
-    && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> /home/kristin/.bashrc \
-    && echo 'source /home/kristin/ros2_ws/install/setup.bash' >> /home/kristin/.bashrc 
+RUN touch ~/.bashrc
+RUN echo 'source /opt/ros/jazzy/setup.bash' >> ~/.bashrc \
+    && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> ~/.bashrc \
+    && echo 'source /home/kristin/ros2_ws/install/setup.bash' >> ~/.bashrc 
 
 ENV SHELL /bin/bash
 
