@@ -12,7 +12,7 @@ def generate_launch_description():
         [
             FindPackageShare("my_robot_description"),
             "urdf",
-            "a_car.urdf",
+            "a_car.urdf.xacro",
         ]
     )
 
