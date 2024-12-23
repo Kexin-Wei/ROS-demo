@@ -15,10 +15,23 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# Install prerequests
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip neovim openssh-client terminator 
+
+# Install gazebo
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y ros-jazzy-turtlesim ros-jazzy-urdf-tutorial '~nros-jazzy-rqt*'
+RUN apt-get install -y curl lsb-release gnupg
+RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y gz-harmonic
+
+# install ros
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y ros-jazzy-turtlesim ros-jazzy-urdf-tutorial ros-jazzy-ros-gz '~nros-jazzy-rqt*'
+
 # add ros path to .bashrc
 RUN echo 'source /opt/ros/jazzy/setup.bash' >> /home/kristin/.bashrc \
     && echo 'source /usr/share/colcon_cd/function/colcon_cd-argcomplete.bash' >> /home/kristin/.bashrc \
