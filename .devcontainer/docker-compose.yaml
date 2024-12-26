@@ -9,8 +9,16 @@ services:
     container_name: vac611_ros2_jazzy_gazebo
     volumes:
       - /home/kristin/ros2_ws:/home/kristin/ros2_ws:rw
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - /dev/dri:/dev/dri:rw
+      # - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # - /dev/dri:/dev/dri:rw
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        consistency: cached
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+        consistency: cached
     command: sleep infinity
     network_mode: host
     pid: host
