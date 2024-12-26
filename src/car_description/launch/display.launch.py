@@ -10,7 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     urdf_path = PathJoinSubstitution(
         [
-            FindPackageShare("my_robot_description"),
+            FindPackageShare("car_description"),
             "urdf",
             "a_car.urdf.xacro",
         ]
@@ -18,7 +18,7 @@ def generate_launch_description():
 
     rviz_path = PathJoinSubstitution(
         [
-            FindPackageShare("my_robot_description"),
+            FindPackageShare("car_description"),
             "rviz",
             "robot.rviz",
         ]
