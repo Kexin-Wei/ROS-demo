@@ -32,7 +32,10 @@ RUN apt-get install -y gz-harmonic
 
 # install ros
 # RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y ros-${ROS_VERSION}-turtlesim ros-${ROS_VERSION}-urdf-tutorial ros-${ROS_VERSION}-ros-gz '~nros-${ROS_VERSION}-rqt*'
+RUN apt-get install -y ros-${ROS_VERSION}-turtlesim \
+    ros-${ROS_VERSION}-urdf-tutorial\
+    ros-${ROS_VERSION}-ros-gz \
+    "~nros-${ROS_VERSION}-rqt*"
 
 # add ros path to .bashrc
 RUN touch ${BASH_FILE} && chown ${USERNAME}:${USERNAME} ${BASH_FILE}
