@@ -2,14 +2,20 @@
     "name": "ROS 2 Development Container",
     "privileged": true,
     "remoteUser": "kristin",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "args": {
-            "USERNAME": "kristin"
-        }
-    },
+    // for build from Dockerfile only
+    // "build": {
+    //     "dockerfile": "Dockerfile",
+    //     "args": {
+    //         "USERNAME": "kristin"
+    //     }
+    // },
+    // "image": "vac611/ros2_jazzy_gazebo:latest",
+    // for build from docker compose only
+    "dockerComposeFile": "docker-compose.yaml",
+    "service": "devcontainer",
     "workspaceFolder": "/home/kristin/ros2_ws",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/kristin/ros2_ws,type=bind",
+    // for build from Dockerfile only
+    // "workspaceMount": "source=${localWorkspaceFolder},target=/home/kristin/ros2_ws,type=bind",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -24,21 +30,22 @@
             ]
         }
     },
-    "containerEnv": {
-        "DISPLAY": "unix:0",
-        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
-        "ROS_DOMAIN_ID": "42"
-    },
-    "runArgs": [
-        "--net=host",
-        "--pid=host",
-        "--ipc=host",
-        "-e",
-        "DISPLAY=${env:DISPLAY}"
-    ],
-    "mounts": [
-        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
-    ],
+    // for build from Dockfile only
+    // "containerEnv": {
+    //     "DISPLAY": "unix:0",
+    //     "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+    //     "ROS_DOMAIN_ID": "42"
+    // },
+    // "runArgs": [
+    //     "--net=host",
+    //     "--pid=host",
+    //     "--ipc=host",
+    //     "-e",
+    //     "DISPLAY=${env:DISPLAY}"
+    // ],
+    // "mounts": [
+    //     "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+    //     "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    // ],
     "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/kristin/ros2_ws/"
 }
