@@ -11,21 +11,21 @@
             <geometry>
                 <box size="${camera_length} ${camera_width} ${camera_height}" />
             </geometry>
-            <material name="grey" />
+            <material name="green" />
         </visual>
         <collision>
             <geometry>
                 <box size="${camera_length} ${camera_width} ${camera_height}" />
             </geometry>
         </collision>
-        <!-- <xacro:box_inertia m="${camera_mass}"
+        <xacro:box_inertia m="${camera_mass}"
             l="${camera_length}" w="${camera_width}" h="${camera_height}"
-            xyz="0 0 0" rpy="0 0 0" /> -->
+            xyz="0 0 0" rpy="0 0 0" />
     </link>
 
     <joint name="base_camera_joint" type="fixed">
         <parent link="base_link" />
         <child link="camera_link" />
-        <orgin xyz="0.3 0 ${(base_length + camera_length)/2.0}" rpy="0 0 0" />
+        <origin xyz="${(camera_length+base_length)/2.0} 0 ${camera_height/2.0}" rpy="0 0 0" />
     </joint>
 </robot>
