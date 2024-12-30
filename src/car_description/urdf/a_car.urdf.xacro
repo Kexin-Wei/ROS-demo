@@ -5,6 +5,8 @@
     <xacro:include filename="mobile_base.xacro" />
     <xacro:include filename="mobile_base_gazebo.xacro" />
 
+    <xacro:include filename="camera.xacro" />
+
     <!-- <xacro:macro name="example_macro" params="a b c">
         <link name="dummy_link">
             <visual>
