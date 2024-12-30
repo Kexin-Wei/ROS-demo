@@ -1,8 +1,8 @@
-FROM ros:humble
+FROM ros:jazzy
 ARG USERNAME=USERNAME
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-ARG ROS_VERSION=humble
+ARG ROS_VERSION=jazzy
 ARG BASH_FILE=/home/${USERNAME}/.bashrc
 
 # Delete user if it exists in container (e.g Ubuntu Noble: ubuntu)
@@ -22,22 +22,20 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip neovim openssh-client terminator 
 
+# Install gazebo
+# RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y curl lsb-release gnupg
+RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y gz-harmonic
+
 # install ros
 # RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y ros-${ROS_VERSION}-turtlesim \
     ros-${ROS_VERSION}-urdf-tutorial\
     ros-${ROS_VERSION}-ros-gz \
     "~nros-${ROS_VERSION}-rqt*"
-
-# Install gazebo
-# RUN apt-get update && apt-get upgrade -y
-# RUN apt-get install -y curl lsb-release gnupg
-# RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
-# RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
-# RUN apt-get update && apt-get upgrade -y
-# RUN apt-get install ignition-fortress
-RUN apt-get install -y gazebo \
-    "~nros-${ROS_VERSION}-gazebo*"
 
 # add ros path to .bashrc
 RUN touch ${BASH_FILE} && chown ${USERNAME}:${USERNAME} ${BASH_FILE}

@@ -5,10 +5,10 @@ services:
       dockerfile: Dockerfile
       args:
         - USERNAME=kristin
-    image: vac611/ros2_humble_gazebo:latest
-    container_name: vac611_ros2_humble_gazebo
+    image: vac611/ros2_jazzy_gazebo:latest
+    container_name: vac611_ros2_jazzy_gazebo
     volumes:
-      - /mnt/d/Repos/ros2_ws:/home/kristin/ros2_ws:rw
+      - /home/kristin/ros2_ws:/home/kristin/ros2_ws:rw
       # - /tmp/.X11-unix:/tmp/.X11-unix:rw
       # - /dev/dri:/dev/dri:rw
       - type: bind
