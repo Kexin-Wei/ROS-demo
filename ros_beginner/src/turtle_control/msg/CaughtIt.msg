@@ -1,1 +1,0 @@
-bool caught_it # true if caught it, false if not
