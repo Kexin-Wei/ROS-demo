@@ -20,5 +20,9 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 ## SLAM demo
 - package [Nav2](https://docs.nav2.org/)
 - map using `maps/map_floor.yaml` generated using `gazebo`
+- in branch `nav2`
 
 ![](/rm_resources/turtlebot_nav.gif)
+
+## Robot Motion Planning (TBC)
+- package [Moveit](https://moveit.picknik.ai/main/index.html)
