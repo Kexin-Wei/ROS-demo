@@ -2,11 +2,11 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 
 # Projects
 ## Turtle catch game
-- package `turtle_control`
+- package `turtle_control` in branch `ros_beginner`
 
 ![](/rm_resources/turtle_catch.gif)
 ## Arm car moving
-- package `arm_bringup`
+- package `arm_bringup` in branch `ros_beginner`
 - with commands
     ```bash
     # terminal 1
@@ -16,3 +16,9 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
     ```
 
 ![](/rm_resources/arm_car.gif)
+
+## SLAM demo
+- package [Nav2](https://docs.nav2.org/)
+- map using `maps/map_floor.yaml` generated using `gazebo`
+
+![](/rm_resources/turtlebot_nav.gif)

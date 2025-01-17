@@ -3188,18 +3188,18 @@
       <pose>5.92912 -2.67245 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>637 684000000</sim_time>
-      <real_time>640 983547008</real_time>
-      <wall_time>1735980090 605829225</wall_time>
-      <iterations>637684</iterations>
+      <sim_time>680 162000000</sim_time>
+      <real_time>42 723352212</real_time>
+      <wall_time>1735982813 122644719</wall_time>
+      <iterations>42478</iterations>
       <model name='Dumpster'>
-        <pose>-4.21792 -4.62995 0.001376 2e-06 -0 1.60087</pose>
+        <pose>-4.21792 -4.62995 0.001377 0 -0 1.60087</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-4.21792 -4.62995 0.001376 2e-06 -0 1.60087</pose>
+          <pose>-4.21792 -4.62995 0.001377 0 -0 1.60087</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>0.000398 -0.013523 9.81037 -2.76154 0.286944 -3e-06</acceleration>
+          <wrench>0.000398 -0.013523 9.81037 0 -0 0</wrench>
         </link>
       </model>
       <model name='Stop Sign'>
@@ -3298,8 +3298,8 @@
         <link name='link'>
           <pose>0.976549 3.65016 0.071997 0 -1e-05 -1.57852</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.000736 0.098586 -9.52293 -3.02547 0.017408 -1.7e-05</acceleration>
-          <wrench>0.014717 1.97172 -190.459 0 -0 0</wrench>
+          <acceleration>0.000736 0.098586 -9.52293 -3.02547 0.017404 -1.7e-05</acceleration>
+          <wrench>0.014713 1.97172 -190.459 0 -0 0</wrench>
         </link>
       </model>
       <model name='euro_pallet_clone'>
@@ -3308,12 +3308,12 @@
         <link name='link'>
           <pose>-0.002735 0.792439 0.071997 0 -1e-05 -3.10439</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.09852 0.003693 -9.52293 -0.079257 1.36993 -1.8e-05</acceleration>
-          <wrench>1.97039 0.07386 -190.459 0 -0 0</wrench>
+          <acceleration>0.09852 0.003693 -9.52293 -0.079256 1.36993 -1.8e-05</acceleration>
+          <wrench>1.97039 0.073859 -190.459 0 -0 0</wrench>
         </link>
       </model>
       <model name='floor'>
-        <pose>0.879986 -0.596794 0 0 -0 0</pose>
+        <pose>0.87999 -0.596794 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Wall_0'>
           <pose>-5.68001 -0.616794 0 0 0 -1.5708</pose>
@@ -3393,10 +3393,10 @@
         </link>
       </model>
       <model name='suv'>
-        <pose>1.63098 -4.52092 0 0 -0 0</pose>
+        <pose>3.09775 -4.52092 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>1.63098 -4.52092 0 0 -0 0</pose>
+          <pose>3.09775 -4.52092 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
