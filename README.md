@@ -5,6 +5,7 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 - package `turtle_control` in branch `ros_beginner`
 
 ![](/rm_resources/turtle_catch.gif)
+
 ## Arm car moving
 - package `arm_bringup` in branch `ros_beginner`
 - with commands
