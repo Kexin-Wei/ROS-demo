@@ -1,0 +1,20 @@
+<launch>
+    <let name="x_start_pose" value="-2.0" />
+    <let name="y_start_pose" value="-0.5" />
+
+    <group>
+        <include file="$(find-pkg-share turtlebot3_gazebo)/launch/turtlebot3_floor.launch.py">
+            <arg name="x_pose" value="$(var x_start_pose)" />
+            <arg name="y_pose" value="$(var y_start_pose)" />
+        </include>
+    </group>
+
+    <group>
+        <let name="map_file" value="$(find-pkg-share turtlebot3_gazebo)/maps/map_floor.yaml" />
+        <include file="$(find-pkg-share turtlebot3_navigation2)/launch/navigation2.launch.py">
+            <arg name="use_sim_time" value="true" />
+            <arg name="map" value="$(var map_file)" />
+        </include>
+    </group>
+
+</launch>
