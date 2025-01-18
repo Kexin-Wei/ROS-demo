@@ -19,6 +19,7 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 
 ## SLAM demo
 - package [Nav2](https://docs.nav2.org/)
+- add-on launch file from `turtlebot3_gazebo` package
 - map using `maps/map_floor.yaml` generated using `gazebo`
 
 ![](/rm_resources/turtlebot_nav.gif)
