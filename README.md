@@ -28,6 +28,8 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 
 ## Robot Motion Planning (TBC)
 - dependency package [Moveit](https://moveit.picknik.ai/main/index.html)
-- simple package `hello_moveit` to move to a target pose given control group
+- package `hello_moveit` to move to a target pose given control group
 ![](/rm_resources/moveit_simple.gif)
 
+- package `hello_moveit_draw` to draw the trajectory out in space
+![](/rm_resources/moveit_trajectory.gif)
