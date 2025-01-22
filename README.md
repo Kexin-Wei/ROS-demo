@@ -33,3 +33,6 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 
 - package `hello_moveit_draw` to draw the trajectory out in space
 ![](/rm_resources/moveit_trajectory.gif)
+
+- package `hello_moveit_object` to avoid a object in space
+![](/rm_resources/moveit_obstacle.gif)

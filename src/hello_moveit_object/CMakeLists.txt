@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(hello_moveit_draw)
+project(hello_moveit_object)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -11,19 +11,19 @@ find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(moveit_visual_tools REQUIRED)
 
-add_executable(hello_moveit_draw src/hello_moveit_draw.cpp)
-target_include_directories(hello_moveit_draw PUBLIC
+add_executable(hello_moveit_object src/hello_moveit_object.cpp)
+target_include_directories(hello_moveit_object PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(hello_moveit_draw PUBLIC c_std_99 cxx_std_17) # Require C99 and C++17
+target_compile_features(hello_moveit_object PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 ament_target_dependencies(
-  hello_moveit_draw
+  hello_moveit_object
   "moveit_ros_planning_interface"
   "moveit_visual_tools"
   "rclcpp"
 )
 
-install(TARGETS hello_moveit_draw
+install(TARGETS hello_moveit_object
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY rviz
@@ -31,11 +31,9 @@ install(DIRECTORY rviz
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-
   # the following line skips the linter which checks for copyrights
   # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
-
   # the following line skips cpplint (only works in a git repo)
   # comment the line when this package is in a git repo and when
   # a copyright and license is added to all source files
