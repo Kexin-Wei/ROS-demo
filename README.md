@@ -19,7 +19,7 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 ![](/rm_resources/arm_car.gif)
 
 ## SLAM demo
-- package [Nav2](https://docs.nav2.org/)
+- dependency package [Nav2](https://docs.nav2.org/)
 - add-on launch file from `turtlebot3_gazebo` package
 - map using `maps/map_floor.yaml` generated using `gazebo`
 - wallpoint running script is at `src/nav2_wallpoint.py` in package
@@ -27,4 +27,7 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 ![](/rm_resources/turtlebot_wallpoint_nav.gif)
 
 ## Robot Motion Planning (TBC)
-- package [Moveit](https://moveit.picknik.ai/main/index.html)
+- dependency package [Moveit](https://moveit.picknik.ai/main/index.html)
+- simple package `hello_moveit` to move to a target pose given control group
+![](/rm_resources/moveit_simple.gif)
+

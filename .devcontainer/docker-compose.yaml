@@ -1,0 +1,30 @@
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USERNAME=kristin
+    image: vac611/ros2_humble_gazebo:latest
+    container_name: vac611_ros2_humble_gazebo
+    volumes:
+      - /home/kristin/ros2_ws:/home/kristin/ros2_ws:rw
+      # - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # - /dev/dri:/dev/dri:rw
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        consistency: cached
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+        consistency: cached
+    command: sleep infinity
+    network_mode: host
+    pid: host
+    ipc: host
+    environment:
+      - DISPLAY=unix:0
+      - ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+      - ROS_DOMAIN_ID=42
+    privileged: true
