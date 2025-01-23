@@ -36,3 +36,6 @@ Notes for udemy class https://www.udemy.com/course/ros2-for-beginners/?couponCod
 
 - package `hello_moveit_object` to avoid a object in space
 ![](/rm_resources/moveit_obstacle.gif)
+
+- package `mtc_tutorial` to pick a object and move it in space
+![](/rm_resources/moveit_pick.gif)

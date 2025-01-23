@@ -126,7 +126,8 @@ int main(int argc, char** argv) {
     }
 
     // shutdown
-    rclcpp::shutdown();
-    spinner.join();
+    rclcpp::
+        shutdown();  // <--- this will cause the spin function in the thread to return
+    spinner.join();  // <--- join the thread before exiting
     return 0;
 }
